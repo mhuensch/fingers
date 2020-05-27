@@ -1,7 +1,7 @@
 # fingers
 A Finger In Every Pi: Breadboard component examples built using Node.js and the Raspberry Pi Zero.
 
-### Quick Start
+## Quick Start
 * [Download the Latest Pi Image](https://www.google.com)
 * Burn the Image onto a Micro SD card ([Etcher](https://www.balena.io/etcher/) recommended)
 * Insert the Micro SD card and Connect to your Pi
@@ -14,7 +14,7 @@ A Finger In Every Pi: Breadboard component examples built using Node.js and the 
 * [Micro SD Card](https://www.amazon.com/gp/product/B0834R8CBQ/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&th=1)
 
 ### Workflow
-On Mac: Go > Connect to Server ... > afp://[your ip address]
+On Mac: Go > Connect to Server ... > afp://fingers.local
 // Use pi as user and same password as above
 
 
@@ -30,12 +30,6 @@ On Mac: Go > Connect to Server ... > afp://[your ip address]
 I2C Testing:
 * lsmod | grep i2c_
 * i2cdetect -y 1
-
-
-*To speed up boot consider:http://himeshp.blogspot.com/2018/08/fast-boot-with-raspberry-pi.html
-
-* To learn pi/node programming: https://www.w3schools.com/nodejs/nodejs_raspberrypi_gpio_intro.asp
-* https://www.w3schools.com/nodejs/nodejs_raspberrypi_led_pushbutton.asp
 
 ### Wiring Setups
 To drop 5V to 3.3V 
@@ -104,6 +98,7 @@ TODO: build the menu from controls that implement change and pass in a value wit
   override in the menu options for the chapter - not part of the control.
 TODO: move GPOID registration into control and indicator but find some way to check unique assignment at playbook start
 
+
 ## Building the Raspberry Pi Image from Scratch
 These are the instructions for building the Pi Image above.  If you use that image, there is no need to do these steps, however, I recognize you may need rebuild this image at some point or that you might want to know how the image was created.
 
@@ -157,6 +152,11 @@ These are the instructions for building the Pi Image above.  If you use that ima
 
 -- You now have an image and a test Micro SD card!!
 
+
+## Development
+git config --global credential.helper store
+
+
 ## Reasoning
 My goal with this project is to document explanations, wiring diagrams, code, and examples for all the most common components (i.e. fingers) I use in my projects.
 
@@ -165,3 +165,8 @@ I chose Node.js for my projects because it allows me to develop large codebases 
 I chose the Raspberry Pi Zero based on it's form factor, flexibility, and price.  It's easy to setup, configure, deploy, and debug projects built on the Pi in a way that just wasn't possible using other alternatives (Arduino's and their clones etc.).  Even micro-controllers that supported javascript natively (Espruino and Neonious One), don't support a full feature set and come at a much higher price tag.  I've seen people make the argument that using the Rasberry Pi in this way is "overkill", but as a hobbyist, I think this argument is invalidated by the intersection of price and time to finish a project.  No other alternative even comes close.
 
 As a software developer, I am accustom to starting from a project template and modifying/adapting/adding my own components to build out that project.  Think of Ember/Vue/Angular CLI tools, Bootstrap for CSS, etc.  In contrast, examples in the circuit/micro-controller space seem to fall into two categories - really simple blinking LEDs or specific and complicated full blown projects.  There aren't any equivalent "TODO List" projects that you can start from and build out from there.  This repository is my answer to that problem.
+
+
+## References
+
+* To learn pi/node programming: https://www.w3schools.com/nodejs/nodejs_raspberrypi_gpio_intro.asp

@@ -1,0 +1,24 @@
+{
+  "name": "fingers",
+  "version": "0.0.1",
+  "description": "Breadboard component examples built using Node.js and the Raspberry Pi Zero",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "sudo node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhuensch/fingers.git"
+  },
+  "author": "Michael Huensch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mhuensch/fingers/issues"
+  },
+  "homepage": "https://github.com/mhuensch/fingers#readme",
+  "dependencies": {
+    "i2c-bus": "5.2.0",
+    "pigpio": "3.2.3"
+  }
+}
