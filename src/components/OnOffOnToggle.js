@@ -7,18 +7,18 @@ const { EventEmitter } = require('events')
 class OnOffToggle extends EventEmitter {
   constructor (pinUp, pinDown) {
     super()
-    const switchUp = new Gpio(pinUp, {mode: Gpio.INPUT, pullUpDown: Gpio.PUD_DOWN, alert: true});
-    const switchDown = new Gpio(pinDown, {mode: Gpio.INPUT, pullUpDown: Gpio.PUD_DOWN, alert: true});
-    switchUp.glitchFilter(10000);
-    switchDown.glitchFilter(10000);
+    const switchUp = new Gpio(pinUp, {mode: Gpio.INPUT, pullUpDown: Gpio.PUD_UP, alert: true})
+    const switchDown = new Gpio(pinDown, {mode: Gpio.INPUT, pullUpDown: Gpio.PUD_UP, alert: true})
+    switchUp.glitchFilter(10000)
+    switchDown.glitchFilter(10000)
 
     switchUp.on('alert', (level, tick) => {
-      if (level > 0) return this.emit('up')
+      if (level == 0) return this.emit('up')
       return this.emit('off')
     })
     
     switchDown.on('alert', (level, tick) => {
-      if (level > 0) return this.emit('down')
+      if (level == 0) return this.emit('down')
       return this.emit('off')
     })
 

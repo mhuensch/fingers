@@ -1,3 +1,5 @@
+// Taken from: https://github.com/rikvermeer/mcp23017
+
 const i2c = require("i2c-bus");
 // const i2c = {
 // 	openSync: function() {
@@ -191,7 +193,7 @@ MCP23017.prototype.setPinPullup = function (pin, value) {
 		this.config.port_a_pullup = this.updateByte(this.config.port_a_pullup, pin, value);
 		this.bus.writeByteSync(this.config.ioaddress, registers.GPPUA, this.config.port_a_pullup);
 	} else {
-		this.config.port_b_pullup = this.updateByte(this.config.port_a_pullup, pin, value);
+		this.config.port_b_pullup = this.updateByte(this.config.port_b_pullup, pin - 8, value);
 		this.bus.writeByteSync(this.config.ioaddress, registers.GPPUB, this.config.port_b_pullup);
 	}
 };
@@ -223,8 +225,7 @@ MCP23017.prototype.writePin = function (pin, value) {
 		this.config.port_a_value = this.updateByte(this.config.port_a_value, pin, value);
 		this.bus.writeByteSync(this.config.ioaddress, registers.GPIOA, this.config.port_a_value);
 	} else {
-		pin = pin - 8;
-		this.config.port_b_value = this.updateByte(this.config.port_b_value, pin, value);
+		this.config.port_b_value = this.updateByte(this.config.port_b_value, pin - 8, value);
 		this.bus.writeByteSync(this.config.ioaddress, registers.GPIOB, this.config.port_b_value);
 	}
 };
@@ -289,7 +290,7 @@ MCP23017.prototype.invertPin = function (pin, polarity) {
 		this.config.port_a_polarity = this.updateByte(this.config.port_a_polarity, pin, polarity);
 		this.bus.writeByteSync(this.config.ioaddress, registers.IPOLA, this.config.port_a_polarity);
 	} else {
-		this.config.port_b_polarity = this.updateByte(this.config.port_b_polarity, pin, polarity);
+		this.config.port_b_polarity = this.updateByte(this.config.port_b_polarity, pin - 8, polarity);
 		this.bus.writeByteSync(this.config.ioaddress, registers.IPOLB, this.config.port_b_polarity);
 	}
 };
@@ -398,7 +399,7 @@ MCP23017.prototype.setInterruptOnPin = function (pin, value) {
 		this.config.inta = this.updateByte(this.config.inta, pin, value);
 		this.bus.writeByteSync(this.config.ioaddress, registers.GPINTENA, this.config.inta);
 	} else {
-		this.config.intb = this.updateByte(this.config.intb, pin, value);
+		this.config.intb = this.updateByte(this.config.intb, pin - 8, value);
 		this.bus.writeByteSync(this.config.ioaddress, registers.GPINTENB, this.config.intb);
 	}
 };
@@ -430,6 +431,7 @@ MCP23017.prototype.readInterruptCapture = function (port) {
 		return this.bus.readByteSync(this.config.ioaddress, registers.INTCAPB);
 	}
 };
+
 
 /**
  * Reset the interrupts A and B to 0

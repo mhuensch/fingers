@@ -19,6 +19,9 @@
   "homepage": "https://github.com/mhuensch/fingers#readme",
   "dependencies": {
     "i2c-bus": "5.2.0",
-    "pigpio": "3.2.3"
+    "mcp-spi-adc": "3.1.0",
+    "pigpio": "3.2.3",
+    "raspi-gpio": "6.2.2",
+    "raspi-i2c": "6.2.4"
   }
 }

@@ -5,7 +5,7 @@ const Gpio = require('pigpio').Gpio
 
 class Servo {
   constructor (pin) {
-    this.motor = new Gpio(pin, {mode: Gpio.OUTPUT, pullUpDown: Gpio.PUD_DOWN});
+    this.motor = new Gpio(pin, {mode: Gpio.OUTPUT, pullUpDown: Gpio.PUD_DOWN})
   }
 
   high () {
